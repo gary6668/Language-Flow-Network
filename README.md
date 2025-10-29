@@ -8,7 +8,15 @@
 因此，语言的生成不是一连串相互独立的概率事件，  
 而是一条在时间中流动、带有不可逆性的轨迹。
 
+---
+
+🧪 This repository contains preliminary results of the Language Flow Network project.
+A formal paper submission is under preparation (Zhejiang University).
+
+---
+
 👉 [**Click here for the full English version**](#english-version)
+
 ---
 
 ## 🧩 1. 核心观点
@@ -24,8 +32,6 @@ Language Flow Network（LFN）提出：
 
 若 Original 的 InfoNCE 更低（互信息更高），  
 说明语言在向量空间中存在时间黏性与情绪连续性。
-
-
 
 ---
 
@@ -99,14 +105,16 @@ bash run_all.sh
 
 ---
 
-📜 7. License
+##📜 7. License
 
 本项目使用 MIT License 授权。
 你可以自由地复制、修改、再分发本项目代码，
 但请保留原始作者署名与许可声明。
 
 ---
+
 First published and implemented by Longhao Gu, Oct 30 2025.
+
 ---
 
 # English Version
