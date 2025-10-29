@@ -28,25 +28,25 @@ Language Flow Network（LFN）提出：
 
 ## 📂 2. 仓库结构
 
-Language-Flow-Network/
-├── datasets/
-│   └── aclImdb/                      # 可选：本地 IMDb 数据（不提交到仓库）
-│
-├── lang-dynamics/
-│   ├── data_cfg.yaml
-│   ├── run_embed.py                  # 句向量提取（支持离线 DistilBERT 或随机投影）
-│   ├── run_mi.py                     # InfoNCE 计算与时间对照
-│   └── models/
-│       ├── distilbert-base-uncased/  # 可选：本地 HF 模型文件夹
-│       ├── encoders.py
-│       └── mine.py
-│
-├── outputs/
-│   ├── imdb_local/
-│   └── dailydialog/
-│
-├── utils/
-└── run_all.sh                        # 一键运行脚本
+Language-Flow-Network/<br>
+├── datasets/<br>
+│   └── aclImdb/                      # 可选：本地 IMDb 数据（不提交到仓库）<br>
+│<br>
+├── lang-dynamics/<br>
+│   ├── data_cfg.yaml<br>
+│   ├── run_embed.py                  # 句向量提取（支持离线 DistilBERT 或随机投影）<br>
+│   ├── run_mi.py                     # InfoNCE 计算与时间对照<br>
+│   └── models/<br>
+│       ├── distilbert-base-uncased/  # 可选：本地 HF 模型文件夹<br>
+│       ├── encoders.py<br>
+│       └── mine.py<br>
+│<br>
+├── outputs/<br>
+│   ├── imdb_local/<br>
+│   └── dailydialog/<br>
+│<br>
+├── utils/<br>
+└── run_all.sh                        # 一键运行脚本<br>
 
 ---
 
@@ -94,7 +94,7 @@ bash run_all.sh
   author = {Gu, Longhao},  
   title  = {Language Flow Network: Quantifying Temporal Mutual Information in Language Dynamics},  
   year   = {2025},  
-  url    = {https://github.com/yourusername/Language-Flow-Network}  
+  url    = {https://github.com/gary6668/Language-Flow-Network}  
 }
 
 ---
