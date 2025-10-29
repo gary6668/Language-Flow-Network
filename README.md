@@ -8,6 +8,7 @@
 因此，语言的生成不是一连串相互独立的概率事件，  
 而是一条在时间中流动、带有不可逆性的轨迹。
 
+👉 [**Click here for the full English version**](#english-version)
 ---
 
 ## 🧩 1. 核心观点
@@ -24,7 +25,7 @@ Language Flow Network（LFN）提出：
 若 Original 的 InfoNCE 更低（互信息更高），  
 说明语言在向量空间中存在时间黏性与情绪连续性。
 
-👉 [**Click here for the full English version**](#english-version)
+
 
 ---
 
