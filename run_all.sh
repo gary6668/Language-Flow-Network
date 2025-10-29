@@ -1,4 +1,24 @@
-python run_embed.py --dataset imdb --model roberta-base --save outputs/imdb/emb_original.npz
-python run_mi.py --emb outputs/imdb/emb_original.npz --mode original --out outputs/imdb/mi_original.csv
-python run_mi.py --emb outputs/imdb/emb_original.npz --mode shuffle  --out outputs/imdb/mi_shuffle.csv
-python run_eval.py --in_dir outputs/imdb --out_dir outputs/imdb/figs
+#!/bin/bash
+echo "==== 🧠 Language Flow Network (Layer Version) ===="
+
+echo "---- Step 1: Embedding ----"
+PYTHONPATH=. python lang-dynamics/run_embed.py
+
+echo "---- Step 2: MI original ----"
+PYTHONPATH=. python -m lang-dynamics.run_mi \
+  --emb outputs/imdb_local/emb_local.npz \
+  --window 3 \
+  --mode original \
+  --out outputs/imdb_local/mi_original.txt
+
+echo "---- Step 3: MI shuffle_layer ----"
+PYTHONPATH=. python -m lang-dynamics.run_mi \
+  --emb outputs/imdb_local/emb_local.npz \
+  --window 3 \
+  --mode shuffle_layer \
+  --out outputs/imdb_local/mi_shuffle.txt
+
+echo "---- ✅ DONE ----"
+echo "Results:"
+cat outputs/imdb_local/mi_original.txt
+cat outputs/imdb_local/mi_shuffle.txt

@@ -1,40 +1,56 @@
-from datasets import load_dataset
+import os, re, random, numpy as np, torch
 from transformers import AutoTokenizer, AutoModel
-import torch, numpy as np, argparse, os
-from tqdm import tqdm
-import nltk
-nltk.download('punkt', quiet=True)
-from nltk import sent_tokenize
 
-def encode_sentences(sent_list, model, tokenizer):
-    toks = tokenizer(sent_list, padding=True, truncation=True, return_tensors="pt", max_length=128).to("cuda")
+# ==== 配置 ====
+base_dir = "datasets/aclImdb"
+output_dir = "outputs/imdb_local"
+os.makedirs(output_dir, exist_ok=True)
+
+sample_n = 200
+# 本地模型路径（你现在的）
+model_name = "models/distilbert-base-uncased"
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+def split_sentences(text):
+    sents = re.split(r'(?<=[.!?。！？])\s+', text.strip())
+    return [s for s in sents if len(s.split()) >= 5]
+
+def load_local_imdb(base_dir, n=200):
+    texts = []
+    for label in ['pos', 'neg']:
+        folder = os.path.join(base_dir, 'train', label)
+        files = random.sample(os.listdir(folder), n//2)
+        for f in files:
+            with open(os.path.join(folder, f), 'r', encoding='utf-8') as fp:
+                texts.append(fp.read())
+    return texts
+
+def encode_sentence_list(sents, model, tokenizer, device):
+    toks = tokenizer(sents, padding=True, truncation=True, return_tensors="pt", max_length=128).to(device)
     with torch.no_grad():
         out = model(**toks, output_hidden_states=True)
-        hs = torch.stack(out.hidden_states)[:, :, 0, :]  # (layers, B, d)
-    return hs.permute(1, 0, 2).cpu().numpy()  # (B, L, d)
+        hs = torch.stack(out.hidden_states)[:, :, 0, :]  # (layers, B, dim)
+    return hs.permute(1, 0, 2).cpu().numpy()  # (B, L, dim)
 
-def process(dataset_name, model_name, save_path):
-    dataset = load_dataset(dataset_name, split="train[:200]")  # 可改大小
+def main():
+    print("📘 Loading IMDb texts ...")
+    texts = load_local_imdb(base_dir, n=sample_n)
+    print("📦 Loading local DistilBERT model ...")
+
     tokenizer = AutoTokenizer.from_pretrained(model_name)
-    model = AutoModel.from_pretrained(model_name).eval().cuda()
+    model = AutoModel.from_pretrained(model_name).to(device).eval()
 
-    all_vecs, all_layers = [], None
-    for item in tqdm(dataset):
-        text = item['text'] if 'text' in item else item['dialog']
-        sents = sent_tokenize(text)
-        if len(sents) < 3: continue
-        emb = encode_sentences(sents, model, tokenizer)
-        all_vecs.append(emb)
-        all_layers = emb.shape[1]
+    all_vecs = []
+    print(f"🚀 Encoding {len(texts)} samples ...")
+    for i, text in enumerate(texts):
+        sents = split_sentences(text)
+        if len(sents) < 1: continue
+        emb = encode_sentence_list(sents, model, tokenizer, device)
+        all_vecs.append(emb.mean(axis=0))
+        print(f"[{i+1}/{len(texts)}] done ({len(sents)} sentences)")
 
-    os.makedirs(os.path.dirname(save_path), exist_ok=True)
-    np.savez_compressed(save_path, emb=all_vecs, layers=all_layers)
-    print(f"Saved to {save_path}")
+    np.savez_compressed(os.path.join(output_dir, "emb_local.npz"), emb=np.array(all_vecs, dtype=object))
+    print(f"\n✅ Done. Saved to {output_dir}/emb_local.npz")
 
 if __name__ == "__main__":
-    p = argparse.ArgumentParser()
-    p.add_argument("--dataset", type=str, required=True)
-    p.add_argument("--model", type=str, default="roberta-base")
-    p.add_argument("--save", type=str, required=True)
-    args = p.parse_args()
-    process(args.dataset, args.model, args.save)
+    main()
