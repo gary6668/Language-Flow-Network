@@ -99,6 +99,14 @@ bash run_all.sh
 
 ---
 
+📜 7. License
+
+本项目使用 MIT License 授权。
+你可以自由地复制、修改、再分发本项目代码，
+但请保留原始作者署名与许可声明。
+
+---
+
 # English Version
 
 > **Maybe I want Change**
@@ -151,3 +159,15 @@ bridging linguistic structure, time, and affect.
 
 If Transformer represents the logic of symbols,  
 then **Language Flow Network** represents the **flow of emotion through time**.
+---
+
+## 
+
+@misc{gu2025languageflownetwork,  
+  author = {Gu, Longhao},  
+  title  = {Language Flow Network: Quantifying Temporal Mutual Information in Language Dynamics},  
+  year   = {2025},  
+  url    = {https://github.com/gary6668/Language-Flow-Network}  
+}
+
+---
