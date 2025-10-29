@@ -161,7 +161,7 @@ If Transformer represents the logic of symbols,
 then **Language Flow Network** represents the **flow of emotion through time**.
 ---
 
-## 
+### Citation
 
 @misc{gu2025languageflownetwork,  
   author = {Gu, Longhao},  
@@ -169,5 +169,11 @@ then **Language Flow Network** represents the **flow of emotion through time**.
   year   = {2025},  
   url    = {https://github.com/gary6668/Language-Flow-Network}  
 }
+
+---
+
+### License
+
+This project is released under the MIT License.
 
 ---
