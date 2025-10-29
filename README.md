@@ -94,7 +94,7 @@ bash run_all.sh
   author = {Gu, Longhao},  
   title  = {Language Flow Network: Quantifying Temporal Mutual Information in Language Dynamics},  
   year   = {2025},  
-  url    = {https://github.com/yourusername/Language-Flow-Network}  
+  url    = {https://github.com/gary6668/Language-Flow-Network}  
 }
 
 ---
