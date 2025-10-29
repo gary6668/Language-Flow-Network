@@ -1,3 +1,6 @@
+# Author: Longhao Gu (Zhejiang University)
+# Original concept: Language Flow Network, Oct 30 2025
+
 import os, re, random, numpy as np, torch
 from transformers import AutoTokenizer, AutoModel
 
