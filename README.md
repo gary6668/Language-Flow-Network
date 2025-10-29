@@ -106,7 +106,7 @@ bash run_all.sh
 但请保留原始作者署名与许可声明。
 
 ---
-First published and implemented by Longhao Gu, Oct 2025.
+First published and implemented by Longhao Gu, Oct 30 2025.
 ---
 
 # English Version
@@ -179,4 +179,4 @@ then **Language Flow Network** represents the **flow of emotion through time**.
 This project is released under the MIT License.
 
 ---
-First published and implemented by Longhao Gu, Oct 2025.
+First published and implemented by Longhao Gu, Oct 30 2025.
