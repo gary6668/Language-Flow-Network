@@ -24,29 +24,31 @@ Language Flow Network（LFN）提出：
 若 Original 的 InfoNCE 更低（互信息更高），  
 说明语言在向量空间中存在时间黏性与情绪连续性。
 
+👉 [**Click here for the full English version**](#english-version)
+
 ---
 
 ## 📂 2. 仓库结构
 
-Language-Flow-Network/<br>
-├── datasets/<br>
-│   └── aclImdb/                      # 可选：本地 IMDb 数据（不提交到仓库）<br>
-│<br>
-├── lang-dynamics/<br>
-│   ├── data_cfg.yaml<br>
-│   ├── run_embed.py                  # 句向量提取（支持离线 DistilBERT 或随机投影）<br>
-│   ├── run_mi.py                     # InfoNCE 计算与时间对照<br>
-│   └── models/<br>
-│       ├── distilbert-base-uncased/  # 可选：本地 HF 模型文件夹<br>
-│       ├── encoders.py<br>
-│       └── mine.py<br>
-│<br>
-├── outputs/<br>
-│   ├── imdb_local/<br>
-│   └── dailydialog/<br>
-│<br>
-├── utils/<br>
-└── run_all.sh                        # 一键运行脚本<br>
+Language-Flow-Network/  
+├── datasets/  
+│  └── aclImdb/       # 可选：本地 IMDb 数据（不提交到仓库）  
+│  
+├── lang-dynamics/  
+│  ├── data_cfg.yaml  
+│  ├── run_embed.py     # 句向量提取（支持离线 DistilBERT 或随机投影）  
+│  ├── run_mi.py       # InfoNCE 计算与时间对照  
+│  └── models/  
+│    ├── distilbert-base-uncased/ # 可选：本地 HF 模型文件夹  
+│    ├── encoders.py  
+│    └── mine.py  
+│  
+├── outputs/  
+│  ├── imdb_local/  
+│  └── dailydialog/  
+│  
+├── utils/  
+└── run_all.sh       # 一键运行脚本
 
 ---
 
@@ -74,9 +76,6 @@ bash run_all.sh
 | Original | 1.5792 | 序列保持时间相关性 |
 | Shuffle  | 1.5053 | 打乱削弱时间结构 |
 
-当语言的时间结构被破坏时，互信息下降。  
-说明语言不是独立的随机过程，而是一种具有可量化时间动力性的连续系统。
-
 ---
 
 ## 🧠 5. 理论启示
@@ -84,7 +83,7 @@ bash run_all.sh
 - 语言是一种时间上的连续流，而非离散事件的集合。  
 - 情绪在语义空间中是平滑演化的，不是瞬间跳变的。  
 - InfoNCE 可作为语言动力学的度量工具，用于分析时间一致性。  
-- 语言模型可扩展至“时间动力一致性约束”（Temporal Coherence Constraint）方向。
+- 可扩展至“时间动力一致性约束”（Temporal Coherence Constraint）方向。
 
 ---
 
@@ -94,10 +93,60 @@ bash run_all.sh
   author = {Gu, Longhao},  
   title  = {Language Flow Network: Quantifying Temporal Mutual Information in Language Dynamics},  
   year   = {2025},  
-  url    = {https://github.com/gary6668/Language-Flow-Network}  
+  url    = {https://github.com/yourusername/Language-Flow-Network}  
 }
 
 ---
 
-> 如果 Transformer 是符号的逻辑机器，  
-> 那么 Language Flow Network 是情绪的时间机器。
+# English Version
+
+> **Maybe I want Change**
+
+Language is essentially a projection of emotion.  
+Each token carries its own latent emotional state.  
+These emotional signals do not abruptly change between words — they evolve smoothly over time.  
+Thus, language generation is not a series of independent probabilistic events,  
+but an irreversible emotional trajectory flowing through time.
+
+---
+
+### Core Idea
+
+Language Flow Network (LFN) reframes natural language as a **temporally continuous observable process**, rather than a set of independent samples.  
+We use the InfoNCE objective (a computable proxy for mutual information) to measure how much the past sentence embeddings can predict the current one.
+
+- **Original:** maintains temporal order  
+- **Shuffle:** randomly reorders the sequence  
+
+If the Original sequence achieves lower InfoNCE (i.e., higher mutual information),  
+it implies that language carries temporal coherence and emotional continuity.
+
+---
+
+### Repository Structure
+
+The project contains:
+- Sentence embedding extraction using DistilBERT or random projections  
+- Mutual information estimation via InfoNCE  
+- Temporal order comparison (Original vs. Shuffle)  
+- Results visualization and data logging  
+
+---
+
+### Key Result
+
+| Mode | Avg InfoNCE ↓ | Interpretation |
+|------|----------------|----------------|
+| Original | 1.5792 | Strong temporal dependence |
+| Shuffle | 1.5053 | Temporal structure disrupted |
+
+---
+
+### Theoretical Implication
+
+This experiment provides a quantifiable lens to study **temporal dynamics in language**.  
+It suggests that the evolution of language carries smooth, directional emotional information —  
+bridging linguistic structure, time, and affect.  
+
+If Transformer represents the logic of symbols,  
+then **Language Flow Network** represents the **flow of emotion through time**.
